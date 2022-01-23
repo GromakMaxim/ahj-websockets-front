@@ -1,0 +1,39 @@
+.chat-window{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.chat-window-log{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.chat-window-type{
+    display: flex;
+    flex-direction: row;
+}
+
+.chat-window-type-here{
+    width: 90%;
+    padding: 15px;
+}
+
+.chat-window-send{
+    background-image: url("../pics/send_w.png");
+    background-size: 30px auto;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+}
+.chat-window-send:hover{
+    background-image: url("../pics/send_b.png");
+    cursor: pointer;
+}
+
+
+

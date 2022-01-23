@@ -10,7 +10,8 @@
     width: 30%;
     border: 1px solid blue;
 }
-.contact:nth-child(2){
+
+.contact:nth-child(2) {
     border-top: 1px solid black;
 }
 

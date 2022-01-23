@@ -1,6 +1,7 @@
 @import url("./global.css");
 @import url("./fonts.css");
 @import url("./contactPanel.css");
+@import url("./chatPanel.css");
 
 .widget {
     display: flex;
