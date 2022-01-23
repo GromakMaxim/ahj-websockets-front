@@ -5,8 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     target: 'web',
     output: {
+        // deploy
         // path: path.resolve(__dirname, './dist'),
         // publicPath: './',
+
+        //local run
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },

@@ -1,0 +1,50 @@
+.room-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px solid blue;
+}
+.contact:nth-child(2){
+    border-top: 1px solid black;
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+
+.contact-pic {
+    width: 50px;
+    border-right: 1px solid black;
+}
+
+.contact-data {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.contact-status {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-status-pic {
+    width: 10px;
+    height: 10px;
+    border: 1px solid blue;
+    margin: auto;
+}
+
+.contact-status-text {
+    margin-left: 10px;
+}
+

@@ -1,0 +1,15 @@
+@import url("./global.css");
+@import url("./fonts.css");
+@import url("./contactPanel.css");
+
+.widget {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    border: 1px solid black;
+}
+
+.chat-window {
+    width: 70%;
+    border: 1px solid red;
+}
