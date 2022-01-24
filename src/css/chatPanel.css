@@ -30,6 +30,7 @@
     height: 30px;
     margin: auto;
 }
+
 .chat-window-send:hover{
     background-image: url("../pics/send_b.png");
     cursor: pointer;

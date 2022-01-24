@@ -23,8 +23,12 @@
 }
 
 .contact-pic {
+    background-image: url("../pics/avatar/788.jpg");
+    background-size: 45px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
     width: 50px;
-    border-right: 1px solid black;
+    height: 50px;
 }
 
 .contact-data {
@@ -42,7 +46,10 @@
     width: 10px;
     height: 10px;
     border: 1px solid blue;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50px;
+    background-color: #10ff05;
 }
 
 .contact-status-text {
