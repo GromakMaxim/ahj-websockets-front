@@ -55,3 +55,7 @@ textarea {
     -moz-appearance: none;
     border: 1px solid #999; /* указание этого свойства также удалит обводку в FireFox */
 }
+
+.widget.hidden{
+    display: none;
+}
