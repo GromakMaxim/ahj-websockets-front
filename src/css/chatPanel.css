@@ -42,20 +42,39 @@
 
 .chat-message {
     display: inline-block;
-
     border-radius: 20px;
     border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
 }
 
 .message-date, .message-from, .message-content{
-    display: inline;
+    display: inline-block;
 }
 
 .message-content{
     word-wrap: break-word;
 }
+
+.chat-message-info{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+
+.message-from{
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+.message-date{
+    font-size: 12px;
+    color: #999999;
+    text-align: center;
+}
+
+
+
 
 
 
