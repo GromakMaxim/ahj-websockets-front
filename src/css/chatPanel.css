@@ -1,28 +1,27 @@
-.chat-window{
+.chat-window {
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
 
-.chat-window-log{
+.chat-window-log {
     display: flex;
     flex-direction: column;
     height: 100%;
-    border: 1px solid black;
     margin-bottom: 10px;
 }
 
-.chat-window-type{
+.chat-window-type {
     display: flex;
     flex-direction: row;
 }
 
-.chat-window-type-here{
+.chat-window-type-here {
     width: 90%;
-    padding: 15px;
+    padding: 10px;
 }
 
-.chat-window-send{
+.chat-window-send {
     background-image: url("../pics/send_w.png");
     background-size: 30px auto;
     background-repeat: no-repeat;
@@ -31,9 +30,31 @@
     margin: auto;
 }
 
-.chat-window-send:hover{
+.chat-window-send:hover {
     background-image: url("../pics/send_b.png");
     cursor: pointer;
+}
+
+.chat-window-log {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chat-message {
+    display: inline-block;
+
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.message-date, .message-from, .message-content{
+    display: inline;
+}
+
+.message-content{
+    word-wrap: break-word;
 }
 
 
