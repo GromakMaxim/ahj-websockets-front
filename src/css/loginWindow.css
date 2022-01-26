@@ -36,12 +36,16 @@
 
 
 .window-login-avatar-selection {
+
+    background-size: 100px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
     width: 100px;
     height: 100px;
+    margin: auto;
+
     border: 1px solid black;
     border-radius: 100px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 

@@ -1,34 +1,22 @@
 export default class AvatarReceiver {
 
     constructor() {
-        this.baseUrl = "https://api.github.com/repos/GromakMaxim/pics_front_source/";
+        this.baseUrl = "http://localhost:8888/?method=getPictures&content=avatars"; //test
     }
 
-    async getLastSha() {
-        const endpoint = "commits";
-        let url = this.baseUrl + endpoint;
-        console.log(url)
-        let response = await fetch(url);
-        if (response.ok) {
-            let json = await response.json();
-            console.log(json)
-            return json[0].sha;
-        } else {
-            throw new Error('smth wrong with github!');
-        }
 
+    async receivePics(){
+        const response = await fetch(this.baseUrl);
+        let json = await response.json();
+        return json;
     }
 
-    async getPicsUrlList() {
-        const endpoint = await this.getLastSha();
-        let url = this.baseUrl + "commits/" + endpoint;
-        console.log(url)
-        let response = await fetch(url);
-        if (response.ok) {
-            let json = await response.json();
-            return json.files;
-        } else {
-            throw new Error('smth wrong with github!');
-        }
+    async showAvatars() {
+        const avatars = await this.receivePics();
+        const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
+        console.log(avatarElement.style)
+        avatarElement.style.backgroundImage = "url('data:image/png;base64, " + avatars[0].content + "')";
+        // console.log(avatars[0].content)
+
     }
 }

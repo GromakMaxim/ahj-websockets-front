@@ -4,8 +4,11 @@ export default class Main{
 
     async f() {
         const receiver = new AvatarReceiver();
-        let response = await receiver.getPicsUrlList();
-        console.log(response)
+        let response = await receiver.showAvatars();
+
+
+
+
     }
 
 }
