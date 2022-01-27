@@ -68,8 +68,7 @@
     cursor: pointer;
 }
 
-.window-login-confirm.off {
-    background-image: url("../pics/confirm_white.png");
+.window-login-confirm{
     background-size: 60px auto;
     background-repeat: no-repeat;
     background-position: center center;
@@ -78,12 +77,12 @@
     margin: auto;
 }
 
+.window-login-confirm.off {
+    background-image: url("../pics/confirm_white.png");
+}
+
 .window-login-confirm.on {
     background-image: url("../pics/confirm_green.png");
-    background-size: 60px auto;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 60px;
-    margin: auto;
+    cursor: pointer;
+
 }

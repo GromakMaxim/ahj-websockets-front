@@ -59,3 +59,7 @@ textarea {
 .widget.hidden{
     display: none;
 }
+
+.window-login.hidden{
+    display: none;
+}
