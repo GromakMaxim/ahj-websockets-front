@@ -12,17 +12,6 @@
     margin-bottom: 10px;
 }
 
-.window-login-confirm {
-    background-image: url("../pics/confirm_white.png");
-    background-size: 60px auto;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 60px;
-    margin: auto;
-}
-
-
 .window-login-avatar-title{
     margin: 20px auto 10px auto;
 }
@@ -77,4 +66,24 @@
 .window-login-avatar-selection-arr-right:hover {
     background-image: url("../pics/avatar-right-b.png");
     cursor: pointer;
+}
+
+.window-login-confirm.off {
+    background-image: url("../pics/confirm_white.png");
+    background-size: 60px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 60px;
+    height: 60px;
+    margin: auto;
+}
+
+.window-login-confirm.on {
+    background-image: url("../pics/confirm_green.png");
+    background-size: 60px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 60px;
+    height: 60px;
+    margin: auto;
 }

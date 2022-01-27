@@ -6,6 +6,7 @@ export default class ActionsController {
     constructor() {
         this.setBtnLeft();
         this.setBtnRight();
+        this.setLoginInputInteraction();
     }
 
     setBtnLeft() {
@@ -13,7 +14,7 @@ export default class ActionsController {
         btnElement.addEventListener('click', (event) => {
             event.preventDefault();
 
-            if (this.index === 0) this.index = AvatarReceiver.avatars.length-1;
+            if (this.index === 0) this.index = AvatarReceiver.avatars.length - 1;
             else this.index--;
 
             const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
@@ -27,7 +28,7 @@ export default class ActionsController {
         btnElement.addEventListener('click', (event) => {
             event.preventDefault();
 
-            if (this.index === AvatarReceiver.avatars.length-1) this.index = 0;
+            if (this.index === AvatarReceiver.avatars.length - 1) this.index = 0;
             else this.index++;
             const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
             avatarElement.style.backgroundImage = "url('data:image/png;base64, " + AvatarReceiver.avatars[this.index].content + "')";
@@ -36,7 +37,20 @@ export default class ActionsController {
         })
     }
 
-    getIndex() {
-        return this.index;
+    setLoginInputInteraction() {
+        const inputElem = document.getElementsByClassName('window-input-login')[0];
+        inputElem.addEventListener('input', (event) => {
+            event.preventDefault();
+
+            const acceptBtn = document.getElementsByClassName('window-login-confirm')[0];
+            let userInput = inputElem.value;
+            if (userInput.length > 5 && !userInput.includes(" ")) {
+                acceptBtn.classList.remove('off');
+                acceptBtn.classList.add('on');
+            } else {
+                acceptBtn.classList.remove('on');
+                acceptBtn.classList.add('off');
+            }
+        })
     }
 }
