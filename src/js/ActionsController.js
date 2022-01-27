@@ -1,4 +1,6 @@
 import AvatarReceiver from "./AvatarReceiver";
+import User from "./User";
+import ChatService from "./ChatService";
 
 export default class ActionsController {
     index = 0;
@@ -21,10 +23,20 @@ export default class ActionsController {
             let userInput = inputElem.value;
 
             if (userInput.length > this.LOGIN_MIN_LENGTH && userInput.length < this.LOGIN_MAX_LENGTH && !userInput.includes(" ")) {
+                const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
+                const avatarContent = avatarElement.style.backgroundImage.substring(28);
+                const user = new User(userInput, avatarContent);
+                new ChatService(user);
+
+
+
+
                 const loginWindow = document.getElementsByClassName('window-login')[0];
                 const widget = document.getElementsByClassName('widget')[0];
                 loginWindow.classList.add('hidden');
                 widget.classList.remove('hidden');
+
+
 
                 // const response = await fetch(this.loginUrl);
                 // let json = await response.json();

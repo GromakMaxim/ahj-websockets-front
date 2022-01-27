@@ -27,9 +27,9 @@ export default class AvatarReceiver {
 
     async showBackground() {
         const randomBgr = await this.receivePics(this.BACKGROUND_URL);
-        console.log(randomBgr)
+        // console.log(randomBgr)
         const pageBody = document.getElementsByTagName('body')[0];
-        console.log(pageBody)
+        // console.log(pageBody)
         pageBody.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5) ), url('data:image/png;base64, " + randomBgr.content + "')";
         pageBody.style.backgroundRepeat = 'no-repeat';
         pageBody.style.backgroundSize = 'cover';
