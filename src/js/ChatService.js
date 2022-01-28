@@ -2,22 +2,30 @@ export default class ChatService {
 
     constructor(user) {
         this.user = user;
+        this.addUserToPanel();
     }
 
 
-    buildNewUser(user) {
-        // let contactList = [];
-        // Array.from(document.getElementsByClassName('contacts')[0].children)
-        //     .forEach((contact) => {
-        //         if (contact.classList.contains('contact')) contactList.push(contact);
-        //     });
-        // console.log(0)
+    setNewMessageSendFunction(){
+        const inputFieldElem = document.getElementsByClassName('chat-window-type-here')[0];
+    }
 
+    async addUserToPanel(){
+        const htmlUser = await this.buildNewUser(this.user);
+        document.getElementsByClassName('contacts')[0].children[0].after(htmlUser);
+    }
+
+
+    async buildNewUser(user) {
+        if (user.getNickname() === null || user.getNickname() === undefined) console.log('error has been occured while builind new user')
+        if (user.getPicContent() === null || user.getPicContent() === undefined) console.log('error has been occured while builind new user')
         let contactElem = document.createElement('div');
         contactElem.classList.add('contact');
 
         let contactPicElem = document.createElement('div');
         contactPicElem.classList.add('contact-pic');
+        contactPicElem.style.backgroundImage = user.getPicContent();
+
         contactElem.append(contactPicElem);
 
         let contactData = document.createElement('div');
@@ -44,5 +52,6 @@ export default class ChatService {
         contactData.append(statusElem);
         contactElem.append(contactData);
 
+        return contactElem;
     }
 }

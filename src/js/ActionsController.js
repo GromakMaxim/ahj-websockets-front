@@ -24,7 +24,7 @@ export default class ActionsController {
 
             if (userInput.length > this.LOGIN_MIN_LENGTH && userInput.length < this.LOGIN_MAX_LENGTH && !userInput.includes(" ")) {
                 const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
-                const avatarContent = avatarElement.style.backgroundImage.substring(28);
+                const avatarContent = avatarElement.style.backgroundImage;
                 const user = new User(userInput, avatarContent);
                 new ChatService(user);
 
