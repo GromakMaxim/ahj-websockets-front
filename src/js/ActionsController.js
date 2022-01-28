@@ -29,13 +29,10 @@ export default class ActionsController {
                 new ChatService(user);
 
 
-
-
                 const loginWindow = document.getElementsByClassName('window-login')[0];
                 const widget = document.getElementsByClassName('widget')[0];
                 loginWindow.classList.add('hidden');
                 widget.classList.remove('hidden');
-
 
 
                 // const response = await fetch(this.loginUrl);

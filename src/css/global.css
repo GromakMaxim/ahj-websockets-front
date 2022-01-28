@@ -49,17 +49,17 @@ select::-ms-expand {
 }
 
 textarea {
-    overflow :hidden;
-    resize : none;
+    overflow: hidden;
+    resize: none;
     outline: none;
     -moz-appearance: none;
     border: 1px solid #999; /* указание этого свойства также удалит обводку в FireFox */
 }
 
-.widget.hidden{
+.widget.hidden {
     display: none;
 }
 
-.window-login.hidden{
+.window-login.hidden {
     display: none;
 }
