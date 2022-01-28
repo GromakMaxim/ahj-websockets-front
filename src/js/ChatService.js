@@ -1,3 +1,5 @@
+import DateHandler from "./DateHandler";
+
 export default class ChatService {
 
     constructor(user) {
@@ -43,6 +45,7 @@ export default class ChatService {
         messageInfoElem.appendChild(fromElem);
         const msgDateElem = document.createElement('div');
         msgDateElem.classList.add('message-date');
+        msgDateElem.textContent = DateHandler.getCurrentDate('dd.MM.yyyy');
         messageInfoElem.appendChild(msgDateElem);
 
         chatMessageElem.appendChild(messageInfoElem);
