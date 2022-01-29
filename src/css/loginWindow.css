@@ -38,8 +38,7 @@
 }
 
 
-.window-login-avatar-selection-arr-left {
-    background-image: url("../pics/avatar-left.png");
+.window-login-avatar-selection-arr-left, .window-login-avatar-selection-arr-right {
     background-size: 45px auto;
     background-repeat: no-repeat;
     background-position: center center;
@@ -48,23 +47,21 @@
     margin: auto;
 }
 
-.window-login-avatar-selection-arr-left:hover {
-    background-image: url("../pics/avatar-left-b.png");
-    cursor: pointer;
+.window-login-avatar-selection-arr-left {
+    background-image: url("../pics/avatar-left.png");
 }
 
 .window-login-avatar-selection-arr-right {
     background-image: url("../pics/avatar-right.png");
-    background-size: 45px auto;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 50px;
-    height: 50px;
-    margin: auto;
 }
 
 .window-login-avatar-selection-arr-right:hover {
     background-image: url("../pics/avatar-right-b.png");
+    cursor: pointer;
+}
+
+.window-login-avatar-selection-arr-left:hover {
+    background-image: url("../pics/avatar-left-b.png");
     cursor: pointer;
 }
 
