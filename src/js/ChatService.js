@@ -1,8 +1,10 @@
 import DateHandler from "./DateHandler";
+import ChatClient from "./ChatClient";
 
 export default class ChatService {
 
     constructor(user) {
+        this.chatClient = new ChatClient();
         this.user = user;
         this.addUserToPanel();
         this.setNewMessageSendFunction();
@@ -15,6 +17,13 @@ export default class ChatService {
             if (event.key === 'Enter') {
                 console.log('enter pressed! ' + textArea.value);
                 this.showMsgInChat();
+
+
+                let obj = {
+                    "from": this.user.getNickname(),
+                    "msg": textArea.value
+                }
+                this.chatClient.sendMsg(obj);
             }
         })
     }
