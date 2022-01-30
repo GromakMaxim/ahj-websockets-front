@@ -6,7 +6,6 @@ export default class ActionsController {
     index = 0;
     LOGIN_MIN_LENGTH = 5;
     LOGIN_MAX_LENGTH = 13;
-    loginUrl = "www.somewhere.com";
 
     constructor() {
         this.setBtnLeft();
@@ -26,20 +25,19 @@ export default class ActionsController {
                 const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
                 const avatarContent = avatarElement.style.backgroundImage;
                 const user = new User(userInput, avatarContent);
-                new ChatService(user);
-
-
-                const loginWindow = document.getElementsByClassName('window-login')[0];
-                const widget = document.getElementsByClassName('widget')[0];
-                loginWindow.classList.add('hidden');
-                widget.classList.remove('hidden');
-
-
-                // const response = await fetch(this.loginUrl);
-                // let json = await response.json();
+                this.chatServise = new ChatService(user, this);
             }
         })
 
+    }
+
+    async allowEnter(){
+        const loginWindow = document.getElementsByClassName('window-login')[0];
+        const widget = document.getElementsByClassName('widget')[0];
+        loginWindow.classList.add('hidden');
+        widget.classList.remove('hidden');
+        await this.chatServise.addUserToPanel();
+        this.chatServise.setNewMessageSendFunction();
     }
 
     setBtnLeft() {

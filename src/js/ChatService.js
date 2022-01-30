@@ -3,11 +3,11 @@ import ChatClient from "./ChatClient";
 
 export default class ChatService {
 
-    constructor(user) {
-        this.chatClient = new ChatClient();
+    constructor(user, actionsController) {
+        if (user === null || user === undefined || actionsController === null || actionsController === undefined) throw new Error('cant init Chat Service ')
+        this.actionsController = actionsController;
         this.user = user;
-        this.addUserToPanel();
-        this.setNewMessageSendFunction();
+        this.chatClient = new ChatClient(this.user, this.actionsController);
     }
 
 
@@ -15,13 +15,12 @@ export default class ChatService {
         const textArea = document.getElementsByClassName('chat-window-type-here')[0];
         textArea.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
-                console.log('enter pressed! ' + textArea.value);
                 this.showMsgInChat();
-
+                let msg = textArea.value.trim();
 
                 let obj = {
                     "from": this.user.getNickname(),
-                    "msg": textArea.value
+                    "msg": msg
                 }
                 this.chatClient.sendMsg(obj);
             }
@@ -61,7 +60,7 @@ export default class ChatService {
 
         const msgContentElem = document.createElement('div');
         msgContentElem.classList.add('message-content');
-        msgContentElem.textContent = textArea.value;
+        msgContentElem.textContent = textArea.value.trim();
 
         chatMessageElem.appendChild(msgContentElem);
 

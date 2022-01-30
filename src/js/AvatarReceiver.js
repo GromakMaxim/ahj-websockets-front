@@ -10,7 +10,6 @@ export default class AvatarReceiver {
 
 
     async receivePics(url) {
-        console.log()
         if (url === null || url === undefined) return null;
 
         const response = await fetch(url);
