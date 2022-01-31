@@ -2,9 +2,10 @@ export default class ChatClient {
 
     wsClient = null;
 
-    constructor(user, actionsController) {
+    constructor(user, actionsController, chatService) {
         if (user === null || user === undefined || actionsController === null || actionsController === undefined) throw new Error('unknown user');
         this.actionsController = actionsController;
+        this.chatService = chatService;
         this.user = user;
         this.wsClient = new WebSocket('ws://localhost:9999');
 
@@ -34,13 +35,13 @@ export default class ChatClient {
                         console.log('successfully registered as \'' + receivedData.who + '\' ')
                         this.actionsController.allowEnter();
                     }
-
                     break;
                 case 'IDNYOU':
                     console.log(message)
                     break;
                 case 'MSG':
-                    console.log(message);
+                    message = JSON.parse(message.data);
+                    this.chatService.receiveMessage(message);
                     break;
             }
         };

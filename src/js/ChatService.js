@@ -7,7 +7,7 @@ export default class ChatService {
         if (user === null || user === undefined || actionsController === null || actionsController === undefined) throw new Error('cant init Chat Service ')
         this.actionsController = actionsController;
         this.user = user;
-        this.chatClient = new ChatClient(this.user, this.actionsController);
+        this.chatClient = new ChatClient(this.user, this.actionsController, this);
     }
 
 
@@ -15,7 +15,6 @@ export default class ChatService {
         const textArea = document.getElementsByClassName('chat-window-type-here')[0];
         textArea.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
-                this.showMsgInChat();
                 let msg = textArea.value.trim();
 
                 let obj = {
@@ -27,9 +26,16 @@ export default class ChatService {
         })
     }
 
-    async showMsgInChat() {
+    async receiveMessage(msg) {
+        // {from: 'керкерк', msg: 'крпкркр'}
+        this.showMsgInChat(msg.from, msg.msg);
+
+        console.log(msg)
+    }
+
+    async showMsgInChat(from, msg) {
         const chatElem = document.getElementsByClassName('chat-window-log')[0];
-        const newMsg = await this.buildNewMessage();
+        const newMsg = await this.buildNewMessage(from, msg);
         console.log(newMsg)
 
         chatElem.children[0].before(newMsg);
@@ -38,18 +44,18 @@ export default class ChatService {
         textArea.value = "";
     }
 
-    async buildNewMessage() {
-        const textArea = document.getElementsByClassName('chat-window-type-here')[0];
-
+    async buildNewMessage(from, msg) {
         const chatMessageElem = document.createElement('div');
         chatMessageElem.classList.add('chat-message');
-        chatMessageElem.classList.add('owner');
+        if (from === this.user.getNickname()) {
+            chatMessageElem.classList.add('owner');
+        }
 
         const messageInfoElem = document.createElement('div');
         messageInfoElem.classList.add('chat-message-info');
         const fromElem = document.createElement('div');
         fromElem.classList.add('message-from');
-        fromElem.textContent = this.user.getNickname();
+        fromElem.textContent = from;
         messageInfoElem.appendChild(fromElem);
         const msgDateElem = document.createElement('div');
         msgDateElem.classList.add('message-date');
@@ -60,7 +66,7 @@ export default class ChatService {
 
         const msgContentElem = document.createElement('div');
         msgContentElem.classList.add('message-content');
-        msgContentElem.textContent = textArea.value.trim();
+        msgContentElem.textContent = msg;
 
         chatMessageElem.appendChild(msgContentElem);
 
