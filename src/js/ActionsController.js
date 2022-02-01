@@ -31,12 +31,13 @@ export default class ActionsController {
 
     }
 
-    async allowEnter(){
+    async allowEnter(receivedData){
         const loginWindow = document.getElementsByClassName('window-login')[0];
         const widget = document.getElementsByClassName('widget')[0];
         loginWindow.classList.add('hidden');
         widget.classList.remove('hidden');
         await this.chatServise.addUserToPanel();
+        await this.chatServise.addOtherUsers(receivedData);
         this.chatServise.setNewMessageSendFunction();
     }
 

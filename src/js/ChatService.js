@@ -1,5 +1,6 @@
 import DateHandler from "./DateHandler";
 import ChatClient from "./ChatClient";
+import User from "./User";
 
 export default class ChatService {
 
@@ -76,6 +77,35 @@ export default class ChatService {
     async addUserToPanel() {
         const htmlUser = await this.buildNewUser(this.user);
         document.getElementsByClassName('contacts')[0].children[0].after(htmlUser);
+    }
+
+    async addOtherUsers(receivedData) {
+        let arr = JSON.parse(receivedData.payload);
+        let usersArr = [];
+
+        for (let item of arr) {
+            let parsed = JSON.parse(item);
+            if (this.user.getNickname() !== parsed[0]) {
+                usersArr.push(new User(parsed[0], parsed[1].pic));
+            }
+        }
+
+        let otherContacts = Array.from(document.getElementsByClassName('contacts')[0].children);
+        otherContacts.forEach(elem=>{
+            if (!elem.classList.contains("room-title")){
+                if (elem.getElementsByClassName('contact-nickname')[0].textContent !== this.user.getNickname()){
+                    elem.remove();
+                }
+
+            }
+        })
+
+        console.log(otherContacts);
+
+        for (let u of usersArr) {
+            const htmlUser = await this.buildNewUser(u);
+            document.getElementsByClassName('contacts')[0].children[0].after(htmlUser);
+        }
     }
 
 

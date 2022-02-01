@@ -15,11 +15,16 @@ export default class ChatClient {
         };
         this.wsClient.onmessage = (message) => {
             message = JSON.parse(message.data);
+            console.log(message)
             switch (message.action) {
                 case 'WHOAREYOU':
                     let obj = {
                         "oper": "new_user",
-                        "who": user.getNickname()
+                        "who": user.getNickname(),
+                        "payload": {
+                            "pic": user.getPicContent(),
+                            "status": "",
+                        }
                     }
                     obj = JSON.stringify(obj);
 
@@ -29,11 +34,17 @@ export default class ChatClient {
 
                 case 'WELCOME':
                     const receivedData = JSON.parse(message.data);
-                    console.log(receivedData)
-                    //in case: {status: 'ok', oper: 'new_user', who: 'енренрне'}
-                    if (receivedData.status === 'ok' && receivedData.oper === 'new_user') {
+                    //in case: {status: 'ok', oper: 'new_user', who: 'testtest2', payload: {…}}
+                    if (receivedData.status === 'ok' && receivedData.oper === 'new_user'
+                        && receivedData.who === this.user.getNickname()) {
+
                         console.log('successfully registered as \'' + receivedData.who + '\' ')
-                        this.actionsController.allowEnter();
+                        this.actionsController.allowEnter(receivedData);
+                    }
+
+                    if (receivedData.status === 'ok' && receivedData.oper === 'new_user' && receivedData.who !== this.user.getNickname()) {
+                        console.log('new user: \'' + receivedData.who + '\' ')
+                        this.chatService.addOtherUsers(receivedData)
                     }
                     break;
                 case 'IDNYOU':
