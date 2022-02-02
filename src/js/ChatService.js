@@ -77,6 +77,12 @@ export default class ChatService {
     async addUserToPanel() {
         const htmlUser = await this.buildNewUser(this.user);
         document.getElementsByClassName('contacts')[0].children[0].after(htmlUser);
+
+        const userPanelNickname = document.getElementsByClassName('widget-user-panel-data-nickname')[0];
+        userPanelNickname.textContent = this.user.getNickname();
+        const userPanelAvatar = document.getElementsByClassName('widget-user-panel-avatar')[0];
+        userPanelAvatar.style.backgroundImage = this.user.getPicContent();
+
     }
 
     async addOtherUsers(receivedData) {
@@ -91,16 +97,14 @@ export default class ChatService {
         }
 
         let otherContacts = Array.from(document.getElementsByClassName('contacts')[0].children);
-        otherContacts.forEach(elem=>{
-            if (!elem.classList.contains("room-title")){
-                if (elem.getElementsByClassName('contact-nickname')[0].textContent !== this.user.getNickname()){
+        otherContacts.forEach(elem => {
+            if (!elem.classList.contains("room-title")) {
+                if (elem.getElementsByClassName('contact-nickname')[0].textContent !== this.user.getNickname()) {
                     elem.remove();
                 }
 
             }
-        })
-
-        console.log(otherContacts);
+        });
 
         for (let u of usersArr) {
             const htmlUser = await this.buildNewUser(u);

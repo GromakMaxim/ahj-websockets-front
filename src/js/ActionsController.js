@@ -45,7 +45,6 @@ export default class ActionsController {
                 this.chatServise = new ChatService(user, this);
             }
         })
-
     }
 
     async allowEnter(receivedData) {

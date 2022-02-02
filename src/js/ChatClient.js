@@ -39,6 +39,7 @@ export default class ChatClient {
                         && receivedData.who === this.user.getNickname()) {
 
                         console.log('successfully registered as \'' + receivedData.who + '\' ')
+                        console.log(receivedData)
                         this.actionsController.allowEnter(receivedData);
                     }
 
