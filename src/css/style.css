@@ -3,11 +3,13 @@
 @import url("./contactPanel.css");
 @import url("./chatPanel.css");
 @import url("./loginWindow.css");
+@import url("./userPanel.css");
 
 .widget {
     display: flex;
+    flex-direction: column;
     width: 800px;
-    height: 600px;
+    margin: auto;
     border: 1px solid black;
     background-color: white;
 }
@@ -15,4 +17,15 @@
 .chat-window {
     width: 70%;
     border: 1px solid red;
+}
+
+.user-panel {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.widget-inner-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
 }

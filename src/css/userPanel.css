@@ -1,0 +1,45 @@
+.user-panel{
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    padding: 10px;
+    align-items: center;
+}
+
+.widget-user-panel-data-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    align-items: center;
+}
+
+
+.widget-user-panel-avatar{
+    border-radius: 100px;
+    border: 3px solid black;
+    background-image: url("../pics/avatar/788.jpg");
+    background-size: 80px auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 75px;
+    height: 75px;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.widget-user-panel-data-nickname{
+    margin-left: auto;
+    text-align: center;
+    font-weight: 900;
+}
+
+.widget-user-panel-data-status-message{
+    margin-left: auto;
+    text-align: center;
+}
+
+.widget-input-status-msg{
+    padding-left: 5px;
+    padding-right: 2px;
+}

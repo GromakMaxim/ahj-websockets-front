@@ -12,6 +12,23 @@ export default class ActionsController {
         this.setBtnRight();
         this.setLoginInputInteraction();
         this.setEnterBtn();
+        this.setUserPanelBehaviour();
+    }
+
+    async setUserPanelBehaviour() {
+        const statusElem = document.getElementsByClassName('widget-input-status-msg')[0];
+
+        document.addEventListener('click', (event)=>{
+            event.preventDefault();
+            console.log(event.target)
+
+            if (event.target === statusElem) {
+                statusElem.removeAttribute("disabled");
+                statusElem.focus();
+            } else {
+                statusElem.setAttribute("disabled", "true");
+            }
+        })
     }
 
     async setEnterBtn() {
@@ -31,7 +48,7 @@ export default class ActionsController {
 
     }
 
-    async allowEnter(receivedData){
+    async allowEnter(receivedData) {
         const loginWindow = document.getElementsByClassName('window-login')[0];
         const widget = document.getElementsByClassName('widget')[0];
         loginWindow.classList.add('hidden');
