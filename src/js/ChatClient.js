@@ -17,6 +17,14 @@ export default class ChatClient {
             message = JSON.parse(message.data);
             console.log(message)
             switch (message.action) {
+                case 'AVATAR':{
+                    const receivedData = JSON.parse(message.data);
+                    if (receivedData.status === 'ok' && receivedData.oper === 'avatar_changed' && receivedData.who === this.user.getNickname()){
+                        console.log(receivedData)
+                        this.actionsController.changeAvatar(JSON.parse(receivedData.changeTo));
+                    }
+                    break;
+                }
                 case 'WHOAREYOU':
                     let obj = {
                         "oper": "new_user",
@@ -65,7 +73,7 @@ export default class ChatClient {
         this.wsClient.send(JSON.stringify({action: 'MSG', data: msg}));
     }
 
-    changeAvatar(who, content) {
+    async changeAvatar(content) {
         content = JSON.stringify(content);
         let obj = {
             "oper": "avatar_changed",
@@ -76,7 +84,7 @@ export default class ChatClient {
         this.wsClient.send(JSON.stringify({action: 'AVATAR', data: msg}))
     }
 
-    changeStatus(status) {
+    async changeStatus(status) {
         let obj = {
             "oper": "status_changed",
             "who": this.user.getNickname(),

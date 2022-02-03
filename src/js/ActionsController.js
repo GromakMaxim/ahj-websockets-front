@@ -32,14 +32,25 @@ export default class ActionsController {
                     this.fillAvatarsTable();
                 }
             } else if (event.target.classList.contains('table-pic')) {
-                document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = event.target.style.backgroundImage;
-                console.log('pic')
+                this.chatServise.changeAvatar(event.target.style.backgroundImage);
             } else {
                 statusElem.setAttribute("disabled", "true");
                 avatarDropdown.classList.add('hidden');
             }
         });
 
+    }
+
+    changeAvatar(content) {
+        document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = content;
+
+        Array.from(document.getElementsByClassName('contact')).forEach((elem) => {
+            const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
+            if (curNickname === this.user.getNickname()) {
+                console.log('found elem')
+                elem.getElementsByClassName('contact-pic')[0].style.backgroundImage = content;
+            }
+        })
     }
 
     async fillAvatarsTable() {
@@ -78,8 +89,8 @@ export default class ActionsController {
             if (userInput.length > this.LOGIN_MIN_LENGTH && userInput.length < this.LOGIN_MAX_LENGTH && !userInput.includes(" ")) {
                 const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
                 const avatarContent = avatarElement.style.backgroundImage;
-                const user = new User(userInput, avatarContent);
-                this.chatServise = new ChatService(user, this);
+                this.user = new User(userInput, avatarContent);
+                this.chatServise = new ChatService(this.user, this);
             }
         })
     }

@@ -151,4 +151,8 @@ export default class ChatService {
 
         return contactElem;
     }
+
+    async changeAvatar(content){
+        this.chatClient.changeAvatar(content);
+    }
 }
