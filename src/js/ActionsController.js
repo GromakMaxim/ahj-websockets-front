@@ -17,18 +17,23 @@ export default class ActionsController {
 
     async setUserPanelBehaviour() {
         const statusElem = document.getElementsByClassName('widget-input-status-msg')[0];
+        const avatarDropdown = document.getElementsByClassName('avatar-dropdown')[0];
 
-        document.addEventListener('click', (event)=>{
+        document.addEventListener('click', (event) => {
             event.preventDefault();
             console.log(event.target)
 
             if (event.target === statusElem) {
                 statusElem.removeAttribute("disabled");
                 statusElem.focus();
+            } else if (event.target === document.getElementsByClassName('widget-user-panel-avatar')[0]) {
+                avatarDropdown.classList.toggle('hidden');
             } else {
                 statusElem.setAttribute("disabled", "true");
+                avatarDropdown.classList.add('hidden');
             }
         })
+
     }
 
     async setEnterBtn() {

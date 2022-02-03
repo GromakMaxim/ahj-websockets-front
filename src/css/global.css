@@ -63,3 +63,7 @@ textarea {
 .window-login.hidden {
     display: none;
 }
+
+.avatar-dropdown.hidden {
+    display: none;
+}
