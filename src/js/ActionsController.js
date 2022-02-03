@@ -31,10 +31,10 @@ export default class ActionsController {
                 if (!avatarDropdown.classList.contains('hidden')) {
                     this.fillAvatarsTable();
                 }
-            } else if (event.target.classList.contains('table-pic')){
+            } else if (event.target.classList.contains('table-pic')) {
                 document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = event.target.style.backgroundImage;
                 console.log('pic')
-            }else {
+            } else {
                 statusElem.setAttribute("disabled", "true");
                 avatarDropdown.classList.add('hidden');
             }
