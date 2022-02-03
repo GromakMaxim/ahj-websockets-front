@@ -65,5 +65,24 @@ export default class ChatClient {
         this.wsClient.send(JSON.stringify({action: 'MSG', data: msg}));
     }
 
+    changeAvatar(who, content) {
+        content = JSON.stringify(content);
+        let obj = {
+            "oper": "avatar_changed",
+            "who": this.user.getNickname(),
+            "changeTo": content,
+        }
+        let msg = JSON.stringify(obj);
+        this.wsClient.send(JSON.stringify({action: 'AVATAR', data: msg}))
+    }
 
+    changeStatus(status) {
+        let obj = {
+            "oper": "status_changed",
+            "who": this.user.getNickname(),
+            "changedTo": status,
+        }
+        let msg = JSON.stringify(obj);
+        this.wsClient.send(JSON.stringify({action: 'STATUS', data: msg}))
+    }
 }

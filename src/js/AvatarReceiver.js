@@ -22,6 +22,7 @@ export default class AvatarReceiver {
         const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
         avatarElement.style.backgroundImage = "url('data:image/png;base64, " + avatars[0].content + "')";
         AvatarReceiver.avatars = avatars;
+        // console.log(avatars);
     }
 
     async showBackground() {

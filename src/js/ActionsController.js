@@ -21,19 +21,51 @@ export default class ActionsController {
 
         document.addEventListener('click', (event) => {
             event.preventDefault();
-            console.log(event.target)
+            // console.log(event.target)
 
             if (event.target === statusElem) {
                 statusElem.removeAttribute("disabled");
                 statusElem.focus();
             } else if (event.target === document.getElementsByClassName('widget-user-panel-avatar')[0]) {
                 avatarDropdown.classList.toggle('hidden');
-            } else {
+                if (!avatarDropdown.classList.contains('hidden')) {
+                    this.fillAvatarsTable();
+                }
+            } else if (event.target.classList.contains('table-pic')){
+                document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = event.target.style.backgroundImage;
+                console.log('pic')
+            }else {
                 statusElem.setAttribute("disabled", "true");
                 avatarDropdown.classList.add('hidden');
             }
-        })
+        });
 
+    }
+
+    async fillAvatarsTable() {
+        const table = document.getElementsByClassName('avatar-dropdown-table')[0];
+
+        while (table.firstChild) {
+            table.removeChild(table.firstChild);
+        }
+
+        let index = 0;
+        let row;
+        let rowLength = 5;
+        for (let entry of AvatarReceiver.avatars) {
+            if (index === 0) row = document.createElement('tr');
+            if (index < rowLength + 1) {
+                let cell = document.createElement('td');
+                cell.classList.add('table-pic');
+                cell.style.backgroundImage = "url('data:image/png;base64, " + entry.content + "')";
+                row.append(cell);
+            }
+            if (index === rowLength + 1) {
+                table.append(row);
+                index = -1;
+            }
+            index++;
+        }
     }
 
     async setEnterBtn() {
