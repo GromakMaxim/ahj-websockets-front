@@ -19,9 +19,9 @@ export default class ChatClient {
             switch (message.action) {
                 case 'AVATAR':{
                     const receivedData = JSON.parse(message.data);
-                    if (receivedData.status === 'ok' && receivedData.oper === 'avatar_changed' && receivedData.who === this.user.getNickname()){
+                    if (receivedData.status === 'ok' && receivedData.oper === 'avatar_changed'){
                         console.log(receivedData)
-                        this.actionsController.changeAvatar(JSON.parse(receivedData.changeTo));
+                        this.actionsController.changeAvatar(receivedData.who, JSON.parse(receivedData.changeTo));
                     }
                     break;
                 }

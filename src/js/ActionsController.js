@@ -41,12 +41,15 @@ export default class ActionsController {
 
     }
 
-    changeAvatar(content) {
-        document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = content;
+    changeAvatar(who, content) {
+        if (who === this.user.getNickname()) {
+            document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = content;
+
+        }
 
         Array.from(document.getElementsByClassName('contact')).forEach((elem) => {
             const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
-            if (curNickname === this.user.getNickname()) {
+            if (curNickname === who) {
                 console.log('found elem')
                 elem.getElementsByClassName('contact-pic')[0].style.backgroundImage = content;
             }
