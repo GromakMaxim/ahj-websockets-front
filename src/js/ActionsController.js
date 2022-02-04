@@ -15,6 +15,17 @@ export default class ActionsController {
         this.setUserPanelBehaviour();
     }
 
+    removeUser(who) {
+        console.log(who)
+        for (let elem of Array.from(document.getElementsByClassName('contact'))) {
+            const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
+            if (curNickname === who) {
+                document.getElementsByClassName('contacts')[0].removeChild(elem);
+                break;
+            }
+        }
+    }
+
     async setUserPanelBehaviour() {
         const statusElem = document.getElementsByClassName('widget-input-status-msg')[0];
         const avatarDropdown = document.getElementsByClassName('avatar-dropdown')[0];
@@ -49,10 +60,7 @@ export default class ActionsController {
 
         Array.from(document.getElementsByClassName('contact')).forEach((elem) => {
             const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
-            if (curNickname === who) {
-                console.log('found elem')
-                elem.getElementsByClassName('contact-pic')[0].style.backgroundImage = content;
-            }
+            if (curNickname === who) elem.getElementsByClassName('contact-pic')[0].style.backgroundImage = content;
         })
     }
 

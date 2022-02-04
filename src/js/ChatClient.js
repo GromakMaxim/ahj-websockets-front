@@ -13,18 +13,26 @@ export default class ChatClient {
             console.log('подключился');
 
         };
+
         this.wsClient.onmessage = (message) => {
             message = JSON.parse(message.data);
-            console.log(message)
+
             switch (message.action) {
-                case 'AVATAR':{
-                    const receivedData = JSON.parse(message.data);
-                    if (receivedData.status === 'ok' && receivedData.oper === 'avatar_changed'){
-                        console.log(receivedData)
-                        this.actionsController.changeAvatar(receivedData.who, JSON.parse(receivedData.changeTo));
+                case 'GOODBYE':
+                    let response = JSON.parse(message.data);
+                    if (response.oper === 'user_left') {
+                        this.actionsController.removeUser(response.who);
                     }
+
                     break;
-                }
+                case 'AVATAR':
+                    let temp = JSON.parse(message.data);
+                    if (temp.status === 'ok' && temp.oper === 'avatar_changed') {
+                        console.log(temp)
+                        this.actionsController.changeAvatar(temp.who, JSON.parse(temp.changeTo));
+                    }
+
+                    break;
                 case 'WHOAREYOU':
                     let obj = {
                         "oper": "new_user",
@@ -41,7 +49,7 @@ export default class ChatClient {
                     break;
 
                 case 'WELCOME':
-                    const receivedData = JSON.parse(message.data);
+                    let receivedData = JSON.parse(message.data);
                     //in case: {status: 'ok', oper: 'new_user', who: 'testtest2', payload: {…}}
                     if (receivedData.status === 'ok' && receivedData.oper === 'new_user'
                         && receivedData.who === this.user.getNickname()) {
