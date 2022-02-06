@@ -32,7 +32,6 @@ export default class ActionsController {
 
         document.addEventListener('click', (event) => {
             event.preventDefault();
-            // console.log(event.target)
 
             if (event.target === statusElem) {
                 statusElem.removeAttribute("disabled");
@@ -47,9 +46,11 @@ export default class ActionsController {
             } else {
                 statusElem.setAttribute("disabled", "true");
                 avatarDropdown.classList.add('hidden');
+                if (this.chatServise !== null && this.chatServise !== undefined) {
+                    this.chatServise.changeStatus(statusElem.value);
+                }
             }
         });
-
     }
 
     changeAvatar(who, content) {

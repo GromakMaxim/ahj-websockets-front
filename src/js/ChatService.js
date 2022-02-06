@@ -152,7 +152,11 @@ export default class ChatService {
         return contactElem;
     }
 
-    async changeAvatar(content){
+    async changeAvatar(content) {
         this.chatClient.changeAvatar(content);
+    }
+
+    async changeStatus(status) {
+        this.chatClient.changeStatus(status.trim());
     }
 }

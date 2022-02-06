@@ -1,7 +1,7 @@
 export default class AvatarReceiver {
     static avatars = null;
-    AVATARS_URL = "http://localhost:8888/?method=getPictures&content=avatars";
-    BACKGROUND_URL = "http://localhost:8888/?method=getPictures&content=background";
+    AVATARS_URL = "https://netology-front-pictures.herokuapp.com/?method=getPictures&content=avatars";
+    BACKGROUND_URL = "https://netology-front-pictures.herokuapp.com/?method=getPictures&content=background";
 
     constructor() {
         this.showBackground();

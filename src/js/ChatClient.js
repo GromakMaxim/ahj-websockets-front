@@ -93,12 +93,14 @@ export default class ChatClient {
     }
 
     async changeStatus(status) {
-        let obj = {
-            "oper": "status_changed",
-            "who": this.user.getNickname(),
-            "changedTo": status,
+        if (this.wsClient.readyState === 1){
+            let obj = {
+                "oper": "status_changed",
+                "who": this.user.getNickname(),
+                "changedTo": status,
+            }
+            let msg = JSON.stringify(obj);
+            this.wsClient.send(JSON.stringify({action: 'STATUS', data: msg}))
         }
-        let msg = JSON.stringify(obj);
-        this.wsClient.send(JSON.stringify({action: 'STATUS', data: msg}))
     }
 }
