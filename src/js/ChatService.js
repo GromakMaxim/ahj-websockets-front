@@ -118,6 +118,7 @@ export default class ChatService {
         if (user.getPicContent() === null || user.getPicContent() === undefined) console.log('error has been occured while builind new user')
         let contactElem = document.createElement('div');
         contactElem.classList.add('contact');
+        contactElem.setAttribute("data-status", user.getStatus());
 
         let contactPicElem = document.createElement('div');
         contactPicElem.classList.add('contact-pic');

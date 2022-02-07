@@ -17,7 +17,6 @@ export default class ActionsController {
     }
 
     removeUser(who) {
-        console.log(who)
         for (let elem of Array.from(document.getElementsByClassName('contact'))) {
             const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
             if (curNickname === who) {
@@ -69,16 +68,21 @@ export default class ActionsController {
     }
 
     changeStatus(who, content) {
-        console.log(content)
         if (who === this.user.getNickname()) {
             document.getElementsByClassName('widget-input-status-msg')[0].value = content;
         }
+
+        Array.from(document.getElementsByClassName('contact')).forEach((elem) => {
+            const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
+            if (curNickname === who) {
+                elem.setAttribute("data-status", content);
+            }
+        })
     }
 
     changeAvatar(who, content) {
         if (who === this.user.getNickname()) {
             document.getElementsByClassName('widget-user-panel-avatar')[0].style.backgroundImage = content;
-
         }
 
         Array.from(document.getElementsByClassName('contact')).forEach((elem) => {

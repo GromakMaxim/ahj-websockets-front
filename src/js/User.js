@@ -2,7 +2,12 @@ export default class User {
     constructor(nickname, picContent, status) {
         this._nickname = nickname;
         this._picContent = picContent;
-        this._status = status;
+        if (status !== null && status !== undefined) {
+            this._status = status;
+        } else {
+            this._status = "";
+        }
+
     }
 
 
