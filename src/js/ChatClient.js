@@ -20,7 +20,7 @@ export default class ChatClient {
             switch (message.action) {
                 case 'STATUS':
                     let statusResponse = JSON.parse(message.data);
-                    if (statusResponse.status === 'ok' && statusResponse.oper === 'status_changed'){
+                    if (statusResponse.status === 'ok' && statusResponse.oper === 'status_changed') {
                         this.actionsController.changeStatus(statusResponse.who, statusResponse.changeTo);
                     }
 
@@ -98,7 +98,7 @@ export default class ChatClient {
     }
 
     async changeStatus(status) {
-        if (this.wsClient.readyState === 1){
+        if (this.wsClient.readyState === 1) {
             let obj = {
                 "oper": "status_changed",
                 "who": this.user.getNickname(),
