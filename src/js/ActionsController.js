@@ -13,6 +13,7 @@ export default class ActionsController {
         this.setLoginInputInteraction();
         this.setEnterBtn();
         this.setUserPanelBehaviour();
+        this.setContactsPanelBehaviour();
     }
 
     removeUser(who) {
@@ -23,6 +24,20 @@ export default class ActionsController {
                 document.getElementsByClassName('contacts')[0].removeChild(elem);
                 break;
             }
+        }
+    }
+
+    async setContactsPanelBehaviour() {
+        let contacts = Array.from(document.getElementsByClassName('contact'));
+        console.log(contacts)
+        for (let contact of contacts) {
+            contact.addEventListener('mouseenter', (event) => {
+                console.log('hover!')
+            })
+
+            contact.addEventListener('mouseleave', (event) => {
+                console.log('unhover')
+            });
         }
     }
 
@@ -51,6 +66,13 @@ export default class ActionsController {
                 }
             }
         });
+    }
+
+    changeStatus(who, content) {
+        console.log(content)
+        if (who === this.user.getNickname()) {
+            document.getElementsByClassName('widget-input-status-msg')[0].value = content;
+        }
     }
 
     changeAvatar(who, content) {

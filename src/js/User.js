@@ -1,7 +1,8 @@
 export default class User {
-    constructor(nickname, picContent) {
+    constructor(nickname, picContent, status) {
         this._nickname = nickname;
         this._picContent = picContent;
+        this._status = status;
     }
 
 
@@ -19,5 +20,13 @@ export default class User {
 
     setPicContent(value) {
         this._picContent = value;
+    }
+
+    getStatus() {
+        return this._status;
+    }
+
+    setStatus(value) {
+        this._status = value;
     }
 }

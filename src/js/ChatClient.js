@@ -18,6 +18,12 @@ export default class ChatClient {
             message = JSON.parse(message.data);
 
             switch (message.action) {
+                case 'STATUS':
+                    let statusResponse = JSON.parse(message.data);
+                    if (statusResponse.status === 'ok' && statusResponse.oper === 'status_changed'){
+                        this.actionsController.changeStatus(statusResponse.who, statusResponse.changeTo);
+                    }
+
                 case 'GOODBYE':
                     let response = JSON.parse(message.data);
                     if (response.oper === 'user_left') {
@@ -28,7 +34,6 @@ export default class ChatClient {
                 case 'AVATAR':
                     let temp = JSON.parse(message.data);
                     if (temp.status === 'ok' && temp.oper === 'avatar_changed') {
-                        console.log(temp)
                         this.actionsController.changeAvatar(temp.who, JSON.parse(temp.changeTo));
                     }
 
@@ -97,7 +102,7 @@ export default class ChatClient {
             let obj = {
                 "oper": "status_changed",
                 "who": this.user.getNickname(),
-                "changedTo": status,
+                "changeTo": status,
             }
             let msg = JSON.stringify(obj);
             this.wsClient.send(JSON.stringify({action: 'STATUS', data: msg}))
