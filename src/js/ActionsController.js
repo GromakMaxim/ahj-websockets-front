@@ -76,8 +76,9 @@ export default class ActionsController {
             const curNickname = elem.getElementsByClassName('contact-nickname')[0].textContent;
             if (curNickname === who) {
                 elem.setAttribute("data-status", content);
+                elem.getElementsByClassName('contact-status-hover')[0].textContent = 'status: ' + content;
             }
-        })
+        });
     }
 
     changeAvatar(who, content) {

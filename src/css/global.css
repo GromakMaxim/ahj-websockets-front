@@ -67,3 +67,7 @@ textarea {
 .avatar-dropdown.hidden {
     display: none;
 }
+
+.contact-status-hover.hidden{
+    display: none;
+}

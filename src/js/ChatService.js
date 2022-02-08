@@ -91,18 +91,13 @@ export default class ChatService {
 
         for (let item of arr) {
             let parsed = JSON.parse(item);
-            if (this.user.getNickname() !== parsed[0]) {
-                usersArr.push(new User(parsed[0], parsed[1].pic));
-            }
+            usersArr.push(new User(parsed[0], parsed[1].pic, parsed[1].status));
         }
 
         let otherContacts = Array.from(document.getElementsByClassName('contacts')[0].children);
         otherContacts.forEach(elem => {
             if (!elem.classList.contains("room-title")) {
-                if (elem.getElementsByClassName('contact-nickname')[0].textContent !== this.user.getNickname()) {
-                    elem.remove();
-                }
-
+                elem.parentNode.removeChild(elem);
             }
         });
 
@@ -111,7 +106,6 @@ export default class ChatService {
             document.getElementsByClassName('contacts')[0].children[0].after(htmlUser);
         }
     }
-
 
     async buildNewUser(user) {
         if (user.getNickname() === null || user.getNickname() === undefined) console.log('error has been occured while builind new user')
@@ -144,11 +138,28 @@ export default class ChatService {
         statusTextElem.classList.add('contact-status-text');
         statusTextElem.textContent = 'Online';
 
+        let statusHover = document.createElement('div');
+        statusHover.classList.add('contact-status-hover');
+        statusHover.classList.add('hidden');
+        statusHover.textContent = 'status: ' + user.getStatus();
+
         statusElem.append(statusPicElem);
         statusElem.append(statusTextElem);
 
         contactData.append(statusElem);
         contactElem.append(contactData);
+        contactElem.append(statusHover);
+
+        contactElem.addEventListener('mouseenter', (event) => {
+            if (contactElem.getAttribute("data-status") !== null && contactElem.getAttribute("data-status") !== undefined
+                && contactElem.getAttribute("data-status").length !== 0) {
+                statusHover.classList.remove('hidden');
+            }
+        });
+
+        contactElem.addEventListener('mouseleave', (event) => {
+            statusHover.classList.add('hidden');
+        });
 
         return contactElem;
     }

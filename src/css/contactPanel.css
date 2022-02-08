@@ -19,6 +19,7 @@
     flex-direction: row;
     height: 50px;
     border-bottom: 1px solid black;
+    position: relative;
 }
 
 .contact-pic {
@@ -53,4 +54,14 @@
 
 .contact-status-text {
     margin-left: 10px;
+}
+
+.contact-status-hover {
+    border: 1px solid black;
+    background-color: #d0d0d0;
+    position: absolute;
+    left: 150px;
+    top: 7px;
+    padding: 5px;
+    width: 300px;
 }
