@@ -44,6 +44,16 @@ export default class ActionsController {
         const statusElem = document.getElementsByClassName('widget-input-status-msg')[0];
         const avatarDropdown = document.getElementsByClassName('avatar-dropdown')[0];
 
+        statusElem.addEventListener('keydown', (event)=>{
+            if (event.keyCode === 13) {
+                statusElem.setAttribute("disabled", "true");
+                avatarDropdown.classList.add('hidden');
+                if (this.chatServise !== null && this.chatServise !== undefined) {
+                    this.chatServise.changeStatus(statusElem.value);
+                }
+            }
+        });
+
         document.addEventListener('click', (event) => {
             event.preventDefault();
 
