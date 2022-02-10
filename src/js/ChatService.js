@@ -25,6 +25,19 @@ export default class ChatService {
                 this.chatClient.sendMsg(obj);
             }
         })
+
+        const sendBtn = document.getElementsByClassName('chat-window-send')[0];
+        sendBtn.addEventListener('click', (event)=>{
+           event.preventDefault();
+
+            let msg = textArea.value.trim();
+
+            let obj = {
+                "from": this.user.getNickname(),
+                "msg": msg
+            }
+            this.chatClient.sendMsg(obj);
+        });
     }
 
     async receiveMessage(msg) {

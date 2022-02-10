@@ -164,7 +164,6 @@ export default class ActionsController {
 
             const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
             avatarElement.style.backgroundImage = "url('data:image/png;base64, " + AvatarReceiver.avatars[this.index].content + "')";
-            console.log(this.index)
         })
     }
 
@@ -177,8 +176,6 @@ export default class ActionsController {
             else this.index++;
             const avatarElement = document.getElementsByClassName('window-login-avatar-selection')[0];
             avatarElement.style.backgroundImage = "url('data:image/png;base64, " + AvatarReceiver.avatars[this.index].content + "')";
-
-            console.log(this.index)
         })
     }
 

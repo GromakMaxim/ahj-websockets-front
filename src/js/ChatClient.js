@@ -7,7 +7,7 @@ export default class ChatClient {
         this.actionsController = actionsController;
         this.chatService = chatService;
         this.user = user;
-        this.wsClient = new WebSocket('ws://netology-chat-server.herokuapp.com/');
+        this.wsClient = new WebSocket('wss://netology-chat-server.herokuapp.com/');
 
         this.wsClient.onopen = function (wsClient) {
             console.log('подключился');
