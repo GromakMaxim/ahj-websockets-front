@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     width: 30%;
-    border: 1px solid blue;
+    border: 1px solid black;
 }
 
 .contact:nth-child(2) {
@@ -45,7 +45,7 @@
 .contact-status-pic {
     width: 10px;
     height: 10px;
-    border: 1px solid blue;
+    border: 1px solid black;
     margin-top: auto;
     margin-bottom: auto;
     border-radius: 50px;

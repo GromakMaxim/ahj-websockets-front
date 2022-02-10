@@ -71,3 +71,7 @@ textarea {
 .contact-status-hover.hidden{
     display: none;
 }
+
+.window-login-alarm.hidden{
+    display: none;
+}

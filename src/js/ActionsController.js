@@ -181,6 +181,7 @@ export default class ActionsController {
 
     setLoginInputInteraction() {
         const inputElem = document.getElementsByClassName('window-input-login')[0];
+        const loginWarnMsg = document.getElementsByClassName('window-login-alarm')[0];
         inputElem.addEventListener('input', (event) => {
             event.preventDefault();
 
@@ -189,9 +190,11 @@ export default class ActionsController {
             if (userInput.length > this.LOGIN_MIN_LENGTH && userInput.length < this.LOGIN_MAX_LENGTH && !userInput.includes(" ")) {
                 acceptBtn.classList.remove('off');
                 acceptBtn.classList.add('on');
+                loginWarnMsg.classList.add('hidden');
             } else {
                 acceptBtn.classList.remove('on');
                 acceptBtn.classList.add('off');
+                loginWarnMsg.classList.remove('hidden');
             }
         })
     }
